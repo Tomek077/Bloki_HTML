@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktywny Tutorial Flexbox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .tutorial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+        }
+
+        .panel h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel h2::before {
+            content: '🎮';
+            font-size: 1.2em;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .control-label {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        .control-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn:hover {
+            background: #f0f3ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .btn.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slider {
+            flex: 1;
+            height: 8px;
+            border-radius: 5px;
+            background: #e9ecef;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .slider-value {
+            font-weight: bold;
+            color: #667eea;
+            min-width: 50px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .flex-container {
+            background: #fff;
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 400px;
+            display: flex;
+            transition: all 0.3s ease;
+        }
+
+        .flex-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            min-height: 80px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .flex-item:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .flex-item:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .flex-item:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .flex-item:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .flex-item:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .current-values {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .current-values h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .value-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .value-item span:first-child {
+            color: #495057;
+            font-weight: bold;
+        }
+
+        .value-item span:last-child {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .reset-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box h3::before {
+            content: '💡';
+            font-size: 1.5em;
+        }
+
+        .info-box p {
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .visualization-label {
+            text-align: center;
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Interaktywny Tutorial Flexbox</h1>
+        <p class="subtitle">Naucz się rozmieszczać bloki w HTML - bawiąc się!</p>
+
+        <div class="info-box">
+            <h3>Co to jest Flexbox?</h3>
+            <p>
+                Flexbox to sposób na układanie elementów na stronie internetowej. Możesz nimi sterować jak klockami -
+                ustawiać je w rzędzie, w kolumnie, wyśrodkowywać, rozciągać i wiele więcej.
+                Poniżej możesz zmieniać ustawienia i od razu widzieć efekty!
+            </p>
+        </div>
+
+        <div class="tutorial-grid">
+            <!-- Panel kontrolny -->
+            <div class="panel">
+                <h2>Sterowanie</h2>
+
+                <!-- Flex Direction -->
+                <div class="control-group">
+                    <label class="control-label">1. Kierunek układania (flex-direction)</label>
+                    <p class="control-description">
+                        Wybierz, w którą stronę mają układać się bloki:
+                    </p>
+                    <div class="button-group">
+                        <button class="btn active" onclick="setFlexDirection('row')">
+                            ➡️ W prawo<br>(row)
+                        </button>
+                        <button class="btn" onclick="setFlexDirection('row-reverse')">
+                            ⬅️ W lewo<br>(row-reverse)
+                        </button>
+                        <button class="btn" onclick="setFlexDirection('column')">
+                            ⬇️ W dół<br>(column)
+                        </button>
+                        <button class="btn" onclick="setFlexDirection('column-reverse')">
+                            ⬆️ W górę<br>(column-reverse)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Justify Content -->
+                <div class="control-group">
+                    <label class="control-label">2. Rozmieszczenie w głównej osi (justify-content)</label>
+                    <p class="control-description">
+                        Ustaw, jak bloki mają się rozmieścić wzdłuż głównego kierunku:
+                    </p>
+                    <div class="button-group">
+                        <button class="btn active" onclick="setJustifyContent('flex-start')">
+                            Na początek
+                        </button>
+                        <button class="btn" onclick="setJustifyContent('center')">
+                            Na środek
+                        </button>
+                        <button class="btn" onclick="setJustifyContent('flex-end')">
+                            Na koniec
+                        </button>
+                        <button class="btn" onclick="setJustifyContent('space-between')">
+                            Z odstępami<br>między
+                        </button>
+                        <button class="btn" onclick="setJustifyContent('space-around')">
+                            Z odstępami<br>dookoła
+                        </button>
+                        <button class="btn" onclick="setJustifyContent('space-evenly')">
+                            Równe<br>odstępy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Align Items -->
+                <div class="control-group">
+                    <label class="control-label">3. Wyrównanie w poprzecznej osi (align-items)</label>
+                    <p class="control-description">
+                        Ustaw, jak bloki mają się wyrównać w poprzek:
+                    </p>
+                    <div class="button-group">
+                        <button class="btn active" onclick="setAlignItems('stretch')">
+                            Rozciągnij
+                        </button>
+                        <button class="btn" onclick="setAlignItems('flex-start')">
+                            Do góry/lewej
+                        </button>
+                        <button class="btn" onclick="setAlignItems('center')">
+                            Na środek
+                        </button>
+                        <button class="btn" onclick="setAlignItems('flex-end')">
+                            Do dołu/prawej
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Flex Wrap -->
+                <div class="control-group">
+                    <label class="control-label">4. Zawijanie (flex-wrap)</label>
+                    <p class="control-description">
+                        Czy bloki mają przenosić się do nowej linii?
+                    </p>
+                    <div class="button-group">
+                        <button class="btn active" onclick="setFlexWrap('nowrap')">
+                            Bez zawijania
+                        </button>
+                        <button class="btn" onclick="setFlexWrap('wrap')">
+                            Zawijaj
+                        </button>
+                        <button class="btn" onclick="setFlexWrap('wrap-reverse')">
+                            Zawijaj odwrotnie
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gap -->
+                <div class="control-group">
+                    <label class="control-label">5. Odstępy między blokami (gap)</label>
+                    <p class="control-description">
+                        Reguluj odstępy między blokami:
+                    </p>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="50" value="0" class="slider" id="gapSlider" oninput="setGap(this.value)">
+                        <span class="slider-value" id="gapValue">0px</span>
+                    </div>
+                </div>
+
+                <button class="reset-btn" onclick="resetAll()">🔄 Resetuj wszystko</button>
+
+                <!-- Current Values Display -->
+                <div class="current-values">
+                    <h3>📋 Aktualne ustawienia CSS:</h3>
+                    <div class="value-item">
+                        <span>flex-direction:</span>
+                        <span id="current-direction">row</span>
+                    </div>
+                    <div class="value-item">
+                        <span>justify-content:</span>
+                        <span id="current-justify">flex-start</span>
+                    </div>
+                    <div class="value-item">
+                        <span>align-items:</span>
+                        <span id="current-align">stretch</span>
+                    </div>
+                    <div class="value-item">
+                        <span>flex-wrap:</span>
+                        <span id="current-wrap">nowrap</span>
+                    </div>
+                    <div class="value-item">
+                        <span>gap:</span>
+                        <span id="current-gap">0px</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wizualizacja -->
+            <div class="panel">
+                <h2>Podgląd na żywo</h2>
+                <p class="visualization-label">Zobacz, jak zmieniają się bloki:</p>
+                <div class="flex-container" id="flexContainer">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                    <div class="flex-item">4</div>
+                    <div class="flex-item">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const flexContainer = document.getElementById('flexContainer');
+        let currentSettings = {
+            direction: 'row',
+            justify: 'flex-start',
+            align: 'stretch',
+            wrap: 'nowrap',
+            gap: 0
+        };
+
+        function setFlexDirection(value) {
+            flexContainer.style.flexDirection = value;
+            currentSettings.direction = value;
+            document.getElementById('current-direction').textContent = value;
+            updateActiveButton('flex-direction', value);
+        }
+
+        function setJustifyContent(value) {
+            flexContainer.style.justifyContent = value;
+            currentSettings.justify = value;
+            document.getElementById('current-justify').textContent = value;
+            updateActiveButton('justify-content', value);
+        }
+
+        function setAlignItems(value) {
+            flexContainer.style.alignItems = value;
+            currentSettings.align = value;
+            document.getElementById('current-align').textContent = value;
+            updateActiveButton('align-items', value);
+        }
+
+        function setFlexWrap(value) {
+            flexContainer.style.flexWrap = value;
+            currentSettings.wrap = value;
+            document.getElementById('current-wrap').textContent = value;
+            updateActiveButton('flex-wrap', value);
+        }
+
+        function setGap(value) {
+            flexContainer.style.gap = value + 'px';
+            currentSettings.gap = value;
+            document.getElementById('current-gap').textContent = value + 'px';
+            document.getElementById('gapValue').textContent = value + 'px';
+        }
+
+        function updateActiveButton(property, value) {
+            // Remove active class from all buttons in the group
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                const onclick = btn.getAttribute('onclick');
+                if (onclick && onclick.includes(value)) {
+                    // Remove active from siblings
+                    btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+                    // Add active to clicked button
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function resetAll() {
+            // Reset to defaults
+            setFlexDirection('row');
+            setJustifyContent('flex-start');
+            setAlignItems('stretch');
+            setFlexWrap('nowrap');
+            setGap(0);
+            document.getElementById('gapSlider').value = 0;
+
+            // Reset all buttons
+            document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+
+            // Set initial active buttons
+            document.querySelectorAll('.control-group').forEach(group => {
+                const firstBtn = group.querySelector('.btn');
+                if (firstBtn) {
+                    firstBtn.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            resetAll();
+        };
+    </script>
+</body>
+</html>
