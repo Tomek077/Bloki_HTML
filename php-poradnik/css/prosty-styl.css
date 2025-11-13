@@ -1,0 +1,204 @@
+/* Prosty CSS dla poradnika PHP - łatwy do zrozumienia dla uczniów */
+
+/* Resetowanie podstawowych stylów */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Główny kontener */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Nagłówki */
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #3498db;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Formularze */
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+button,
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Wynik działania PHP */
+.wynik {
+    background-color: #e8f5e9;
+    padding: 15px;
+    border-left: 4px solid #4caf50;
+    margin: 20px 0;
+}
+
+/* Przycisk podglądu kodu */
+.pokaz-kod-btn {
+    background-color: #9b59b6;
+    margin-top: 20px;
+}
+
+.pokaz-kod-btn:hover {
+    background-color: #8e44ad;
+}
+
+/* Kontener z kodem */
+.kod-kontener {
+    display: none;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.kod-kontener.widoczny {
+    display: block;
+}
+
+.kod-kontener pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Komentarze w kodzie */
+.komentarz {
+    color: #95a5a6;
+    font-style: italic;
+}
+
+/* Linki */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Nawigacja */
+.nawigacja {
+    background-color: #34495e;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.nawigacja a {
+    color: white;
+    margin-right: 15px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.nawigacja a:hover {
+    background-color: #2c3e50;
+    text-decoration: none;
+}
+
+/* Lista przykładów */
+.lista-przykladow {
+    list-style: none;
+}
+
+.lista-przykladow li {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-left: 4px solid #3498db;
+    border-radius: 3px;
+}
+
+.lista-przykladow li:hover {
+    background-color: #ecf0f1;
+}
+
+.lista-przykladow a {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #3498db;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
