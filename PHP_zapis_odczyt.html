@@ -25,6 +25,13 @@
             <li><a href="#odczyt">📖 Odczyt z bazy</a></li>
             <li><a href="#filtrowanie">🔍 Filtrowanie danych</a></li>
         </ul>
+
+        <h3 style="color: #fff; margin-top: 20px; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Gotowe przykłady PHP:</h3>
+        <ul>
+            <li><a href="php_przyklady/formularz.html">📋 Formularz</a></li>
+            <li><a href="php_przyklady/lista.php">📖 Lista uczniów</a></li>
+            <li><a href="php_przyklady/filtruj.html">🔍 Filtrowanie</a></li>
+        </ul>
     </div>
 
     <!-- Główna treść -->
@@ -572,6 +579,111 @@ mysqli_close($conn);
             - Liczby BEZ apostrofów: <code>WHERE id = 5</code><br>
             - <strong>AND</strong> = oba warunki muszą być spełnione<br>
             - <strong>OR</strong> = wystarczy jeden warunek
+        </div>
+
+        <hr>
+
+        <h2>🔢 WAŻNE: Dwa sposoby odczytu z bazy - wybierz jeden!</h2>
+
+        <div class="info-box">
+            <h3>Na egzaminie możesz używać danych z bazy na DWA sposoby:</h3>
+
+            <h4>1️⃣ TABLICA ASOCJACYJNA (po nazwach kolumn) - ŁATWIEJSZA:</h4>
+            <div class="code-box">
+<pre>while ($wiersz = <strong style="color: #e74c3c;">mysqli_fetch_assoc($wynik)</strong>) {
+    echo $wiersz['imie'];      <span style="color: #95a5a6;">// używamy NAZWY kolumny</span>
+    echo $wiersz['nazwisko'];  <span style="color: #95a5a6;">// używamy NAZWY kolumny</span>
+    echo $wiersz['klasa'];     <span style="color: #95a5a6;">// używamy NAZWY kolumny</span>
+}</pre>
+            </div>
+
+            <p><strong>Zalety:</strong></p>
+            <ul>
+                <li>✅ Łatwiejsze do zapamiętania (używasz nazw kolumn)</li>
+                <li>✅ Kod jest bardziej czytelny</li>
+                <li>✅ Nie musisz pamiętać kolejności kolumn</li>
+            </ul>
+
+            <h4>2️⃣ TABLICA INDEKSOWANA (po numerach) - SZYBSZA:</h4>
+            <div class="code-box">
+<pre>while ($wiersz = <strong style="color: #e74c3c;">mysqli_fetch_row($wynik)</strong>) {
+    echo $wiersz[1];  <span style="color: #95a5a6;">// używamy NUMERU (1 = imie)</span>
+    echo $wiersz[2];  <span style="color: #95a5a6;">// używamy NUMERU (2 = nazwisko)</span>
+    echo $wiersz[3];  <span style="color: #95a5a6;">// używamy NUMERU (3 = klasa)</span>
+}</pre>
+            </div>
+
+            <p><strong>Zalety:</strong></p>
+            <ul>
+                <li>✅ Trochę szybsze działanie</li>
+                <li>✅ Mniej pisania (liczby zamiast nazw)</li>
+            </ul>
+
+            <p><strong>⚠️ UWAGA przy tablicy indeksowanej:</strong></p>
+            <ul>
+                <li>❗ Numerowanie zaczyna się od <strong>0</strong> nie od 1!</li>
+                <li>❗ <code>[0]</code> = pierwsza kolumna, <code>[1]</code> = druga kolumna, itd.</li>
+                <li>❗ Kolejność MUSI być taka sama jak w SELECT</li>
+                <li>❌ <code>$wiersz['imie']</code> NIE ZADZIAŁA z <code>mysqli_fetch_row()</code></li>
+                <li>❌ <code>$wiersz[1]</code> NIE ZADZIAŁA z <code>mysqli_fetch_assoc()</code></li>
+            </ul>
+        </div>
+
+        <div class="step-box">
+            <h3>📊 Przykład porównania:</h3>
+
+            <table class="example-table">
+                <tr>
+                    <th>Tablica asocjacyjna</th>
+                    <th>Tablica indeksowana</th>
+                </tr>
+                <tr>
+                    <td><code>mysqli_fetch_assoc($wynik)</code></td>
+                    <td><code>mysqli_fetch_row($wynik)</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['id']</code></td>
+                    <td><code>$wiersz[0]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['imie']</code></td>
+                    <td><code>$wiersz[1]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['nazwisko']</code></td>
+                    <td><code>$wiersz[2]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['klasa']</code></td>
+                    <td><code>$wiersz[3]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['email']</code></td>
+                    <td><code>$wiersz[4]</code></td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                💡 <strong>WSKAZÓWKA NA EGZAMIN:</strong><br>
+                <strong>Jeśli nie wiesz którą wybrać - użyj TABLICY ASOCJACYJNEJ!</strong><br>
+                Jest łatwiejsza i mniej pomyłek. Używasz nazw kolumn które widzisz w phpMyAdmin.<br>
+                <br>
+                Tablicę indeksowaną używaj tylko jeśli:<br>
+                - Dokładnie znasz kolejność kolumn w bazie<br>
+                - Pamiętasz że liczenie zaczyna się od 0<br>
+                - Zadanie egzaminacyjne wymaga jej użycia
+            </div>
+        </div>
+
+        <div class="success-box">
+            <h3>🎯 Zobacz przykłady w praktyce!</h3>
+            <p>W folderze <strong>php_przyklady/</strong> znajdziesz gotowe pliki z oboma metodami:</p>
+            <ul>
+                <li><strong>lista.php</strong> - używa <code>mysqli_fetch_row()</code> (tablica indeksowana)</li>
+                <li><strong>pokaz_klase.php</strong> - używa <code>mysqli_fetch_row()</code> z WHERE</li>
+                <li>Oba pliki zawierają szczegółowe komentarze i wyjaśnienia!</li>
+            </ul>
+            <p><a href="php_przyklady/lista.php" style="color: #2c3e50; font-weight: bold;">➡️ Zobacz przykład z tablicą indeksowaną</a></p>
         </div>
 
         <hr>
