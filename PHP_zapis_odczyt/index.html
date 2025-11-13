@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial PHP + MySQL - Strona główna</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container fade-in">
+        <!-- NAGŁÓWEK -->
+        <div class="header">
+            <h1>🎓 Tutorial PHP + MySQL</h1>
+            <h2>Zapis i Odczyt Danych z Bazy</h2>
+            <p>Prosty, interaktywny kurs dla uczniów</p>
+        </div>
+
+        <!-- NAWIGACJA -->
+        <div class="navigation">
+            <a href="index.html" class="nav-button active">🏠 Strona główna</a>
+            <a href="czesc1_zapis.php" class="nav-button">📝 Część 1: Zapis</a>
+            <a href="czesc2_odczyt.php" class="nav-button">📖 Część 2: Odczyt</a>
+            <a href="czesc3_filtrowanie.php" class="nav-button">🔍 Część 3: Filtrowanie</a>
+        </div>
+
+        <!-- TREŚĆ -->
+        <div class="content">
+            <!-- WPROWADZENIE -->
+            <div class="section">
+                <h2 class="section-title">👋 Witaj w tutorialu!</h2>
+
+                <div class="info-box">
+                    <h3>🎯 Czego się nauczysz?</h3>
+                    <p>W tym tutorialu poznasz podstawy pracy z bazami danych MySQL i językiem PHP.
+                    Nauczysz się jak tworzyć proste aplikacje internetowe, które mogą:</p>
+                    <ul>
+                        <li>✅ Zbierać dane z formularzy HTML</li>
+                        <li>✅ Zapisywać dane do bazy MySQL</li>
+                        <li>✅ Odczytywać dane z bazy</li>
+                        <li>✅ Wyświetlać dane na różne sposoby</li>
+                        <li>✅ Filtrować i wyszukiwać informacje</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ Czego potrzebujesz?</h3>
+                    <p>Przed rozpoczęciem upewnij się, że masz:</p>
+                    <ol>
+                        <li><strong>Serwer lokalny</strong> - XAMPP, WAMP lub podobny (z Apache + MySQL)</li>
+                        <li><strong>Edytor kodu</strong> - Notepad++, Visual Studio Code lub inny</li>
+                        <li><strong>Przeglądarkę</strong> - Chrome, Firefox lub inną</li>
+                        <li><strong>Podstawową wiedzę HTML</strong> - formularze, tagi, atrybuty</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- PRZEGLĄD CZĘŚCI -->
+            <div class="section">
+                <h2 class="section-title">📚 Części tutoriala</h2>
+
+                <!-- CZĘŚĆ 1 -->
+                <div class="card">
+                    <h3 class="card-title">📝 Część 1: Formularz i Zapis do Bazy</h3>
+                    <p><strong>Co się nauczysz:</strong></p>
+                    <ul>
+                        <li>Jak stworzyć formularz HTML do wprowadzania danych</li>
+                        <li>Jak odebrać dane z formularza w PHP (metoda POST)</li>
+                        <li>Jak połączyć się z bazą danych MySQL używając mysqli</li>
+                        <li>Jak zapisać dane do bazy używając INSERT</li>
+                        <li>Jak zabezpieczyć dane przed SQL Injection</li>
+                    </ul>
+                    <p><strong>🔧 Funkcje PHP:</strong> mysqli_connect(), mysqli_real_escape_string(), mysqli_query(), $_POST</p>
+                    <p><strong>⏱️ Czas nauki:</strong> ~30 minut</p>
+                    <p><strong>📊 Poziom trudności:</strong> ⭐⭐☆☆☆ (Łatwy)</p>
+                    <br>
+                    <a href="czesc1_zapis.php" class="btn">Przejdź do Części 1 →</a>
+                </div>
+
+                <!-- CZĘŚĆ 2 -->
+                <div class="card">
+                    <h3 class="card-title">📖 Część 2: Odczyt i Wyświetlanie Danych</h3>
+                    <p><strong>Co się nauczysz:</strong></p>
+                    <ul>
+                        <li>Jak odczytać dane z bazy MySQL używając SELECT</li>
+                        <li>Jak wyświetlić dane jako punktory (lista ul)</li>
+                        <li>Jak wyświetlić dane jako listę numerowaną (lista ol)</li>
+                        <li>Jak wyświetlić dane w profesjonalnej tabeli HTML</li>
+                        <li>Jak przeglądać wyniki w pętli while</li>
+                    </ul>
+                    <p><strong>🔧 Funkcje PHP:</strong> mysqli_query(), mysqli_num_rows(), mysqli_fetch_assoc(), mysqli_data_seek()</p>
+                    <p><strong>⏱️ Czas nauki:</strong> ~40 minut</p>
+                    <p><strong>📊 Poziom trudności:</strong> ⭐⭐☆☆☆ (Łatwy)</p>
+                    <br>
+                    <a href="czesc2_odczyt.php" class="btn">Przejdź do Części 2 →</a>
+                </div>
+
+                <!-- CZĘŚĆ 3 -->
+                <div class="card">
+                    <h3 class="card-title">🔍 Część 3: Filtrowanie i Wyszukiwanie</h3>
+                    <p><strong>Co się nauczysz:</strong></p>
+                    <ul>
+                        <li>Jak stworzyć formularz wyszukiwania (pole tekstowe + select)</li>
+                        <li>Jak używać metody GET do wysyłania filtrów</li>
+                        <li>Jak używać WHERE w zapytaniach SQL</li>
+                        <li>Jak używać operatora LIKE do szukania tekstu</li>
+                        <li>Jak łączyć różne warunki (AND, OR)</li>
+                        <li>Różnice między GET i POST</li>
+                    </ul>
+                    <p><strong>🔧 Funkcje PHP:</strong> $_GET, isset(), empty(), LIKE, WHERE, AND, OR</p>
+                    <p><strong>⏱️ Czas nauki:</strong> ~50 minut</p>
+                    <p><strong>📊 Poziom trudności:</strong> ⭐⭐⭐☆☆ (Średni)</p>
+                    <br>
+                    <a href="czesc3_filtrowanie.php" class="btn">Przejdź do Części 3 →</a>
+                </div>
+            </div>
+
+            <!-- INSTALACJA I KONFIGURACJA -->
+            <div class="section">
+                <h2 class="section-title">⚙️ Instalacja i Konfiguracja</h2>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Zainstaluj XAMPP</strong>
+                    <p>Pobierz XAMPP z <a href="https://www.apachefriends.org" target="_blank" style="color: #667eea;">apachefriends.org</a> i zainstaluj na swoim komputerze</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Uruchom serwery</strong>
+                    <p>Otwórz XAMPP Control Panel i uruchom <strong>Apache</strong> oraz <strong>MySQL</strong></p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Skopiuj pliki tutoriala</strong>
+                    <p>Skopiuj cały folder <code>PHP_zapis_odczyt</code> do folderu <code>htdocs</code> w katalogu XAMPP (np. C:\xampp\htdocs\)</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Utwórz bazę danych</strong>
+                    <p>Otwórz przeglądarkę i wejdź na <a href="http://localhost/phpmyadmin" target="_blank" style="color: #667eea;">http://localhost/phpmyadmin</a></p>
+                    <p>Kliknij zakładkę <strong>"Import"</strong> i zaimportuj plik <code>create_database.sql</code></p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <strong>Skonfiguruj połączenie</strong>
+                    <p>Otwórz plik <code>db_config.php</code> i sprawdź czy dane logowania są poprawne:</p>
+                    <div class="code-block">
+$db_host = "localhost";
+$db_user = "root";
+$db_password = "";        // Zwykle puste
+$db_name = "szkola_db";
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <strong>Gotowe!</strong>
+                    <p>Otwórz przeglądarkę i wejdź na:</p>
+                    <p><a href="http://localhost/PHP_zapis_odczyt/" target="_blank" style="color: #667eea; font-weight: bold;">http://localhost/PHP_zapis_odczyt/</a></p>
+                </div>
+            </div>
+
+            <!-- STRUKTURA BAZY DANYCH -->
+            <div class="section">
+                <h2 class="section-title">🗄️ Struktura Bazy Danych</h2>
+
+                <div class="info-box">
+                    <h3>📊 Tabela: uczniowie</h3>
+                    <p>W tutorialu używamy prostej tabeli z danymi uczniów:</p>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pole</th>
+                            <th>Typ</th>
+                            <th>Opis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>id</strong></td>
+                            <td>INT (AUTO_INCREMENT)</td>
+                            <td>Unikalny identyfikator ucznia (nadawany automatycznie)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>imie</strong></td>
+                            <td>VARCHAR(50)</td>
+                            <td>Imię ucznia (max 50 znaków)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>nazwisko</strong></td>
+                            <td>VARCHAR(50)</td>
+                            <td>Nazwisko ucznia (max 50 znaków)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>wiek</strong></td>
+                            <td>INT</td>
+                            <td>Wiek ucznia (liczba całkowita)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>klasa</strong></td>
+                            <td>VARCHAR(10)</td>
+                            <td>Klasa ucznia (np. 1A, 2B, 3C)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>data_dodania</strong></td>
+                            <td>TIMESTAMP</td>
+                            <td>Data i czas dodania do bazy (automatycznie)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- WSKAZÓWKI -->
+            <div class="section">
+                <h2 class="section-title">💡 Wskazówki dla uczniów</h2>
+
+                <div class="card">
+                    <h3 class="card-title">✏️ Jak najlepiej się uczyć?</h3>
+                    <ol>
+                        <li>📖 <strong>Czytaj kod uważnie</strong> - każda linijka ma komentarz wyjaśniający</li>
+                        <li>⌨️ <strong>Przepisuj kod ręcznie</strong> - nie kopiuj-wklej, pisz sam!</li>
+                        <li>🔬 <strong>Eksperymentuj</strong> - zmieniaj kod i zobacz co się stanie</li>
+                        <li>❓ <strong>Zadawaj pytania</strong> - nie rozumiesz? Pytaj nauczyciela!</li>
+                        <li>🐛 <strong>Analizuj błędy</strong> - błędy to najlepszy sposób nauki</li>
+                        <li>🔄 <strong>Powtarzaj</strong> - przejdź tutorial kilka razy</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">🐛 Najczęstsze błędy i ich rozwiązania</h3>
+                    <ul>
+                        <li><strong>❌ "Cannot connect to database"</strong><br>
+                            → Sprawdź czy MySQL jest uruchomiony w XAMPP</li>
+
+                        <li><strong>❌ "Table doesn't exist"</strong><br>
+                            → Zaimportuj plik create_database.sql w phpMyAdmin</li>
+
+                        <li><strong>❌ "Undefined index"</strong><br>
+                            → Użyj isset() przed $_GET lub $_POST</li>
+
+                        <li><strong>❌ Polskie znaki wyświetlają się źle</strong><br>
+                            → Sprawdź czy masz &lt;meta charset="UTF-8"&gt; i mysqli_set_charset($conn, "utf8mb4")</li>
+
+                        <li><strong>❌ Strona jest biała (pusty ekran)</strong><br>
+                            → Włącz wyświetlanie błędów w PHP lub sprawdź logi błędów Apache</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ZADANIA DODATKOWE -->
+            <div class="section">
+                <h2 class="section-title">🎯 Zadania dodatkowe dla chętnych</h2>
+
+                <div class="card">
+                    <h3 class="card-title">🌟 Zadanie 1: Dodaj więcej pól</h3>
+                    <p>Rozszerz tabelę uczniowie o dodatkowe pola: email, telefon, adres</p>
+                    <p><strong>Poziom:</strong> ⭐⭐☆☆☆</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">🌟 Zadanie 2: Edycja danych</h3>
+                    <p>Dodaj możliwość edycji istniejących uczniów (UPDATE)</p>
+                    <p><strong>Poziom:</strong> ⭐⭐⭐☆☆</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">🌟 Zadanie 3: Usuwanie danych</h3>
+                    <p>Dodaj przycisk "Usuń" przy każdym uczniu (DELETE)</p>
+                    <p><strong>Poziom:</strong> ⭐⭐⭐☆☆</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">🌟 Zadanie 4: Sortowanie</h3>
+                    <p>Dodaj możliwość sortowania tabeli po różnych kolumnach</p>
+                    <p><strong>Poziom:</strong> ⭐⭐⭐⭐☆</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">🌟 Zadanie 5: Paginacja</h3>
+                    <p>Dodaj numerację stron (wyświetlaj tylko 10 uczniów na stronę)</p>
+                    <p><strong>Poziom:</strong> ⭐⭐⭐⭐☆</p>
+                </div>
+            </div>
+
+            <!-- POMOCNE LINKI -->
+            <div class="section">
+                <h2 class="section-title">🔗 Pomocne linki</h2>
+
+                <div class="card">
+                    <h3>📚 Dokumentacja i nauka:</h3>
+                    <ul>
+                        <li><a href="https://www.php.net/manual/pl/" target="_blank" style="color: #667eea;">PHP - Oficjalna dokumentacja (PL)</a></li>
+                        <li><a href="https://dev.mysql.com/doc/" target="_blank" style="color: #667eea;">MySQL - Dokumentacja</a></li>
+                        <li><a href="https://www.w3schools.com/php/" target="_blank" style="color: #667eea;">W3Schools - Tutorial PHP</a></li>
+                        <li><a href="https://www.w3schools.com/sql/" target="_blank" style="color: #667eea;">W3Schools - Tutorial SQL</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STOPKA -->
+        <div class="footer">
+            <p>📚 Tutorial PHP + MySQL dla uczniów | 2024</p>
+            <p><strong>Powodzenia w nauce! 🚀</strong></p>
+            <br>
+            <p style="font-size: 0.9em; color: #888;">
+                Ten tutorial został stworzony z myślą o uczniach rozpoczynających naukę programowania.<br>
+                Jeśli masz pytania lub sugestie, skontaktuj się z nauczycielem.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
