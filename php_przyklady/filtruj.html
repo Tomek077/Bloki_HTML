@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrowanie uczniów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .info {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin: 20px 0;
+        }
+        .filter-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 2px solid #dee2e6;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        select:focus, input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        input[type="submit"]:hover {
+            opacity: 0.9;
+        }
+        .hint {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .example {
+            background-color: #fff9e6;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔍 Filtrowanie uczniów</h1>
+
+        <div class="info">
+            <strong>💡 Co to jest filtrowanie?</strong><br>
+            Filtrowanie to wyświetlanie tylko WYBRANYCH uczniów, a nie wszystkich.
+            Używamy do tego słowa kluczowego <code>WHERE</code> w zapytaniu SQL.
+        </div>
+
+        <div style="background-color: #e8f5e9; border: 2px solid #4caf50; padding: 20px; margin: 20px 0; border-radius: 5px; text-align: center;">
+            <h2 style="color: #2e7d32; margin-top: 0;">⭐ NOWOŚĆ - Filtrowanie na jednej stronie!</h2>
+            <p style="font-size: 1.1em;">
+                <strong>Formularz i wyniki w jednym pliku!</strong><br>
+                To BARDZO CZĘSTE zadanie na egzaminie INF.03!
+            </p>
+            <a href="filtruj_jedna_strona.php" style="display: inline-block; padding: 15px 30px; background-color: #4caf50; color: white; text-decoration: none; border-radius: 5px; font-size: 1.2em; font-weight: bold; margin-top: 10px;">
+                📋 Zobacz przykład "Wszystko w jednym" →
+            </a>
+            <p style="margin-top: 15px; color: #555;">
+                Wybierasz klasę → klikasz "Szukaj" → wyniki na tej samej stronie!<br>
+                Jeśli brak danych → wyświetla "Brak danych"
+            </p>
+        </div>
+
+        <!-- FORMULARZ 1: Filtruj po klasie -->
+        <div class="filter-section">
+            <h2>📚 Filtruj po klasie</h2>
+            <p>Wybierz klasę, aby zobaczyć tylko uczniów z tej klasy.</p>
+
+            <form action="pokaz_klase.php" method="POST">
+                <label for="klasa">Wybierz klasę:</label>
+                <select id="klasa" name="wybrana_klasa" required>
+                    <option value="">-- Wybierz klasę --</option>
+                    <option value="3A">3A</option>
+                    <option value="3B">3B</option>
+                    <option value="3C">3C</option>
+                </select>
+                <div class="hint">
+                    name="wybrana_klasa" - W PHP: $_POST['wybrana_klasa']
+                </div>
+
+                <input type="submit" value="🔍 Pokaż uczniów z wybranej klasy">
+            </form>
+
+            <div class="example">
+                <strong>📖 Jak to działa?</strong><br>
+                1. Wybierasz klasę (np. "3A")<br>
+                2. Klikasz "Pokaż uczniów"<br>
+                3. Dane lecą do pliku <code>pokaz_klase.php</code><br>
+                4. PHP używa zapytania: <code>SELECT * FROM uczniowie WHERE klasa = '3A'</code><br>
+                5. Wyświetlają się tylko uczniowie z klasy 3A!
+            </div>
+        </div>
+
+        <!-- FORMULARZ 2: Filtruj po imieniu -->
+        <div class="filter-section">
+            <h2>👤 Filtruj po imieniu</h2>
+            <p>Wpisz imię, aby znaleźć uczniów o tym imieniu.</p>
+
+            <form action="pokaz_imie.php" method="POST">
+                <label for="imie">Wpisz imię:</label>
+                <input
+                    type="text"
+                    id="imie"
+                    name="szukane_imie"
+                    placeholder="np. Anna, Jan, Piotr"
+                    required
+                >
+                <div class="hint">
+                    name="szukane_imie" - W PHP: $_POST['szukane_imie']
+                </div>
+
+                <input type="submit" value="🔍 Szukaj ucznia po imieniu">
+            </form>
+
+            <div class="example">
+                <strong>📖 Jak to działa?</strong><br>
+                1. Wpisujesz imię (np. "Anna")<br>
+                2. Klikasz "Szukaj ucznia"<br>
+                3. Dane lecą do pliku <code>pokaz_imie.php</code><br>
+                4. PHP używa zapytania: <code>SELECT * FROM uczniowie WHERE imie = 'Anna'</code><br>
+                5. Wyświetlają się tylko uczniowie o imieniu Anna!
+            </div>
+        </div>
+
+        <!-- FORMULARZ 3: Filtruj po nazwisku -->
+        <div class="filter-section">
+            <h2>👥 Filtruj po nazwisku</h2>
+            <p>Wpisz nazwisko, aby znaleźć uczniów o tym nazwisku.</p>
+
+            <form action="pokaz_nazwisko.php" method="POST">
+                <label for="nazwisko">Wpisz nazwisko:</label>
+                <input
+                    type="text"
+                    id="nazwisko"
+                    name="szukane_nazwisko"
+                    placeholder="np. Kowalski, Nowak"
+                    required
+                >
+                <div class="hint">
+                    name="szukane_nazwisko" - W PHP: $_POST['szukane_nazwisko']
+                </div>
+
+                <input type="submit" value="🔍 Szukaj ucznia po nazwisku">
+            </form>
+
+            <div class="example">
+                <strong>📖 Jak to działa?</strong><br>
+                1. Wpisujesz nazwisko (np. "Kowalski")<br>
+                2. Klikasz "Szukaj ucznia"<br>
+                3. Dane lecą do pliku <code>pokaz_nazwisko.php</code><br>
+                4. PHP używa zapytania: <code>SELECT * FROM uczniowie WHERE nazwisko = 'Kowalski'</code><br>
+                5. Wyświetlają się tylko uczniowie o nazwisku Kowalski!
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="lista.php">📋 Zobacz wszystkich uczniów</a> |
+            <a href="../index.html">🏠 Strona główna</a>
+        </div>
+
+        <!-- Dodatkowe informacje -->
+        <div class="info" style="margin-top: 30px;">
+            <h2 style="color: #2196F3; margin-top: 0;">📚 Co musisz zapamiętać?</h2>
+
+            <h3>🔑 WHERE - słowo kluczowe do filtrowania</h3>
+            <p><code>WHERE</code> oznacza "gdzie" - wybierz tylko te wiersze, gdzie warunek jest spełniony.</p>
+
+            <h3>📝 Przykłady zapytań z WHERE:</h3>
+            <ul>
+                <li><code>WHERE klasa = '3A'</code> - tylko klasa 3A</li>
+                <li><code>WHERE imie = 'Jan'</code> - tylko imię Jan</li>
+                <li><code>WHERE id = 5</code> - tylko uczeń o ID = 5</li>
+                <li><code>WHERE klasa = '3A' AND nazwisko = 'Kowalski'</code> - oba warunki</li>
+                <li><code>WHERE klasa = '3A' OR klasa = '3B'</code> - jeden z warunków</li>
+            </ul>
+
+            <h3>⚠️ SUPER WAŻNE!</h3>
+            <ul>
+                <li>Tekst zawsze w apostrofach: <code>WHERE klasa = '3A'</code> ✅</li>
+                <li>Bez apostrofów będzie błąd: <code>WHERE klasa = 3A</code> ❌</li>
+                <li>Liczby BEZ apostrofów: <code>WHERE id = 5</code> ✅</li>
+                <li>Wielkie/małe litery się liczą: <code>'Jan'</code> ≠ <code>'jan'</code></li>
+            </ul>
+
+            <h3>🎯 Na egzaminie INF.03:</h3>
+            <p>Filtrowanie to jedna z najczęstszych rzeczy na egzaminie! Musisz umieć:</p>
+            <ol>
+                <li>Stworzyć formularz z listą rozwijaną lub polem tekstowym</li>
+                <li>Pobrać dane z formularza: <code>$_POST['nazwa']</code></li>
+                <li>Użyć WHERE w zapytaniu: <code>WHERE kolumna = '$zmienna'</code></li>
+                <li>Wyświetlić wyniki w pętli <code>while</code></li>
+            </ol>
+        </div>
+
+    </div>
+
+</body>
+</html>

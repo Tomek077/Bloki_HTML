@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poradnik INF.03 - Bazy danych i PHP</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <!-- Nagłówek -->
+    <div id="header">
+        <h1>📚 Poradnik INF.03</h1>
+        <p>Wszystko czego potrzebujesz do zdania egzaminu!</p>
+    </div>
+
+    <!-- Menu nawigacji -->
+    <div id="nav">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html">🏠 Strona główna</a></li>
+            <li><a href="PHP_zapis_odczyt.html">📝 PHP - Zapis i Odczyt</a></li>
+            <li><a href="#import">💾 Import bazy danych</a></li>
+        </ul>
+
+        <h3 style="color: #fff; margin-top: 20px; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Gotowe przykłady PHP:</h3>
+        <ul>
+            <li><a href="php_przyklady/formularz.html">📋 Formularz</a></li>
+            <li><a href="php_przyklady/lista.php">📖 Lista uczniów</a></li>
+            <li><a href="php_przyklady/filtruj.html">🔍 Filtrowanie</a></li>
+            <li><a href="php_przyklady/filtruj_jedna_strona.php">⭐ Filtrowanie (1 strona)</a></li>
+        </ul>
+    </div>
+
+    <!-- Główna treść -->
+    <div id="main">
+        <h2>Witaj w poradniku INF.03!</h2>
+        <p>Ten poradnik pomoże Ci przygotować się do egzaminu INF.03. Wszystko jest wyjaśnione krok po kroku, w prosty sposób.</p>
+
+        <div class="info-box">
+            <h3>🎯 Co znajdziesz w tym poradniku?</h3>
+            <ul>
+                <li>Jak stworzyć formularz HTML</li>
+                <li>Jak zapisać dane z formularza do bazy danych</li>
+                <li>Jak odczytać dane z bazy danych</li>
+                <li>Jak filtrować dane (WHERE)</li>
+                <li>Gotowe przykłady kodu do skopiowania</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h2 id="import">💾 Jak zaimportować bazę danych? (WAŻNE!)</h2>
+        <p>Na egzaminie INF.03 dostajesz plik z bazą danych (np. <code>uczniowie.sql</code>). Musisz go zaimportować do phpMyAdmin. Oto jak to zrobić:</p>
+
+        <div class="step-box">
+            <h3>KROK 1: Uruchom XAMPP</h3>
+            <ol>
+                <li>Otwórz program <strong>XAMPP Control Panel</strong></li>
+                <li>Kliknij <strong>Start</strong> przy <strong>Apache</strong> (serwer PHP)</li>
+                <li>Kliknij <strong>Start</strong> przy <strong>MySQL</strong> (baza danych)</li>
+                <li>Poczekaj aż oba zmienią kolor na <span style="color: green;">zielony</span></li>
+            </ol>
+            <div class="warning-box">
+                ⚠️ <strong>UWAGA:</strong> Jeśli nie uruchomisz Apache i MySQL, nic nie będzie działać!
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h3>KROK 2: Otwórz phpMyAdmin</h3>
+            <ol>
+                <li>Otwórz przeglądarkę (Chrome, Firefox, Edge)</li>
+                <li>W pasku adresu wpisz: <code>localhost/phpmyadmin</code></li>
+                <li>Naciśnij Enter</li>
+                <li>Otworzy się panel phpMyAdmin</li>
+            </ol>
+        </div>
+
+        <div class="step-box">
+            <h3>KROK 3: Stwórz nową bazę danych</h3>
+            <ol>
+                <li>W phpMyAdmin kliknij zakładkę <strong>"Bazy danych"</strong> (u góry)</li>
+                <li>W polu "Utwórz bazę danych" wpisz nazwę np. <code>szkola</code></li>
+                <li>Kodowanie zostaw <code>utf8_polish_ci</code> lub <code>utf8mb4_general_ci</code></li>
+                <li>Kliknij przycisk <strong>"Utwórz"</strong></li>
+            </ol>
+            <div class="tip-box">
+                💡 <strong>WSKAZÓWKA:</strong> Nazwa bazy musi być taka sama jak w zadaniu egzaminacyjnym!
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h3>KROK 4: Importuj plik SQL</h3>
+            <ol>
+                <li>Kliknij na nazwę swojej bazy danych po lewej stronie (np. <code>szkola</code>)</li>
+                <li>Kliknij zakładkę <strong>"Import"</strong> (u góry)</li>
+                <li>Kliknij <strong>"Wybierz plik"</strong> (Choose File)</li>
+                <li>Znajdź plik <code>.sql</code> z zadania egzaminacyjnego</li>
+                <li>Na dole strony kliknij <strong>"Wykonaj"</strong> (Go)</li>
+                <li>Jeśli wszystko poszło dobrze, zobaczysz komunikat: <span style="color: green;">"Import zakończony pomyślnie"</span></li>
+            </ol>
+        </div>
+
+        <div class="step-box">
+            <h3>KROK 5: Sprawdź czy się udało</h3>
+            <ol>
+                <li>Po lewej stronie kliknij na nazwę swojej bazy (np. <code>szkola</code>)</li>
+                <li>Zobaczysz listę tabel (np. <code>uczniowie</code>, <code>klasy</code>)</li>
+                <li>Kliknij na nazwę tabeli</li>
+                <li>Kliknij zakładkę <strong>"Przeglądaj"</strong></li>
+                <li>Zobaczysz dane w tabeli - GOTOWE! ✅</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <h2>🚀 Co dalej?</h2>
+        <p>Teraz możesz przejść do nauki PHP:</p>
+        <div class="button-container">
+            <a href="PHP_zapis_odczyt.html" class="big-button">📝 Przejdź do tutoriala PHP →</a>
+        </div>
+
+    </div>
+
+    <!-- Stopka -->
+    <div id="footer">
+        <p>&copy; 2024 Poradnik INF.03 | Powodzenia na egzaminie! 🍀</p>
+    </div>
+
+</body>
+</html>

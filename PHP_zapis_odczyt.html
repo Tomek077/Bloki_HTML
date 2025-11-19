@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP - Zapis i Odczyt z Bazy Danych | INF.03</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <!-- Nagłówek -->
+    <div id="header">
+        <h1>📝 PHP - Zapis i Odczyt z Bazy Danych</h1>
+        <p>Wszystko czego potrzebujesz - krok po kroku!</p>
+    </div>
+
+    <!-- Menu nawigacji -->
+    <div id="nav">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html">🏠 Strona główna</a></li>
+            <li><a href="#formularz">📋 Formularz HTML</a></li>
+            <li><a href="#polaczenie">🔌 Połączenie z bazą</a></li>
+            <li><a href="#zapis">💾 Zapis do bazy</a></li>
+            <li><a href="#odczyt">📖 Odczyt z bazy</a></li>
+            <li><a href="#filtrowanie">🔍 Filtrowanie danych</a></li>
+        </ul>
+
+        <h3 style="color: #fff; margin-top: 20px; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Gotowe przykłady PHP:</h3>
+        <ul>
+            <li><a href="php_przyklady/formularz.html">📋 Formularz</a></li>
+            <li><a href="php_przyklady/lista.php">📖 Lista uczniów</a></li>
+            <li><a href="php_przyklady/filtruj.html">🔍 Filtrowanie</a></li>
+            <li><a href="php_przyklady/filtruj_jedna_strona.php">⭐ Filtrowanie (1 strona)</a></li>
+        </ul>
+    </div>
+
+    <!-- Główna treść -->
+    <div id="main">
+
+        <h2>🎯 Czego się nauczysz?</h2>
+        <div class="info-box">
+            <p>Ten tutorial pokaże Ci WSZYSTKO, co musisz wiedzieć o PHP i bazach danych na egzaminie INF.03:</p>
+            <ul>
+                <li>Jak zbudować formularz HTML (każde pole wyjaśnione!)</li>
+                <li>Jak połączyć się z bazą danych MySQL</li>
+                <li>Jak zapisać dane z formularza do bazy</li>
+                <li>Jak odczytać dane z bazy i wyświetlić je na stronie</li>
+                <li>Jak filtrować dane (WHERE)</li>
+                <li>Gotowe przykłady - skopiuj i użyj!</li>
+            </ul>
+        </div>
+
+        <hr id="formularz">
+
+        <h2>📋 CZĘŚĆ 1: Formularz HTML</h2>
+
+        <h3>Co to jest formularz?</h3>
+        <p>Formularz to miejsce na stronie, gdzie użytkownik może wpisać dane (np. imię, nazwisko, email). Gdy kliknie "Wyślij", dane są wysyłane do pliku PHP, który zapisuje je w bazie danych.</p>
+
+        <div class="step-box">
+            <h3>Przykład: Prosty formularz do dodawania ucznia</h3>
+            <p>Stwórzmy formularz, który pozwoli dodać nowego ucznia do bazy. Zapisz ten kod jako <code>formularz.html</code></p>
+
+            <div class="code-box">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Dodaj ucznia&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Dodaj nowego ucznia&lt;/h1&gt;
+
+    <span class="code-comment">&lt;!-- FORM - rozpoczyna formularz --&gt;</span>
+    &lt;form <span class="highlight">action="dodaj.php"</span> <span class="highlight">method="POST"</span>&gt;
+
+        <span class="code-comment">&lt;!-- Pole na imię --&gt;</span>
+        &lt;label&gt;Imię:&lt;/label&gt;
+        &lt;input type="text" <span class="highlight">name="imie"</span> required&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        <span class="code-comment">&lt;!-- Pole na nazwisko --&gt;</span>
+        &lt;label&gt;Nazwisko:&lt;/label&gt;
+        &lt;input type="text" <span class="highlight">name="nazwisko"</span> required&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        <span class="code-comment">&lt;!-- Pole na klasę --&gt;</span>
+        &lt;label&gt;Klasa:&lt;/label&gt;
+        &lt;input type="text" <span class="highlight">name="klasa"</span>&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        <span class="code-comment">&lt;!-- Pole na email --&gt;</span>
+        &lt;label&gt;Email:&lt;/label&gt;
+        &lt;input type="email" <span class="highlight">name="email"</span>&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        <span class="code-comment">&lt;!-- Przycisk wyślij --&gt;</span>
+        &lt;input type="submit" value="Dodaj ucznia"&gt;
+
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+            </div>
+        </div>
+
+        <h3>🔍 Wyjaśnienie każdego elementu formularza:</h3>
+
+        <table class="example-table">
+            <tr>
+                <th>Element</th>
+                <th>Co robi?</th>
+                <th>Dlaczego to ważne?</th>
+            </tr>
+            <tr>
+                <td><code>&lt;form&gt;</code></td>
+                <td>Rozpoczyna formularz</td>
+                <td>Musi być na początku! Bez tego formularz nie będzie działał</td>
+            </tr>
+            <tr>
+                <td><code>action="dodaj.php"</code></td>
+                <td>Mówi, do jakiego pliku PHP wysłać dane</td>
+                <td>To jest plik, który zapisze dane w bazie! Musisz go stworzyć!</td>
+            </tr>
+            <tr>
+                <td><code>method="POST"</code></td>
+                <td>Sposób wysyłania danych</td>
+                <td>POST = dane są ukryte (bezpieczne). GET = dane widoczne w adresie URL</td>
+            </tr>
+            <tr>
+                <td><code>&lt;label&gt;</code></td>
+                <td>Etykieta (opis) pola</td>
+                <td>Pokazuje użytkownikowi, co ma wpisać</td>
+            </tr>
+            <tr>
+                <td><code>&lt;input type="text"&gt;</code></td>
+                <td>Pole tekstowe</td>
+                <td>Użytkownik może tu wpisać tekst (imię, nazwisko, itp.)</td>
+            </tr>
+            <tr>
+                <td><code>name="imie"</code></td>
+                <td>NAZWA pola (super ważne!)</td>
+                <td>W PHP odwołujesz się do danych po tej nazwie: $_POST['imie']</td>
+            </tr>
+            <tr>
+                <td><code>required</code></td>
+                <td>Pole wymagane</td>
+                <td>Użytkownik musi wypełnić to pole, żeby wysłać formularz</td>
+            </tr>
+            <tr>
+                <td><code>type="email"</code></td>
+                <td>Pole na email</td>
+                <td>Sprawdza czy wpisano poprawny email (z @)</td>
+            </tr>
+            <tr>
+                <td><code>&lt;input type="submit"&gt;</code></td>
+                <td>Przycisk do wysłania</td>
+                <td>Gdy klikniesz, dane lecą do pliku PHP!</td>
+            </tr>
+        </table>
+
+        <div class="tip-box">
+            💡 <strong>ZAPAMIĘTAJ:</strong> Wartość <code>name=""</code> w formularzu = klucz w PHP! Jeśli napiszesz <code>name="imie"</code>, to w PHP używasz <code>$_POST['imie']</code>
+        </div>
+
+        <hr id="polaczenie">
+
+        <h2>🔌 CZĘŚĆ 2: Połączenie z bazą danych</h2>
+
+        <h3>Zanim zapiszesz cokolwiek, musisz połączyć się z bazą!</h3>
+        <p>PHP musi wiedzieć, z którą bazą danych ma rozmawiać. Robisz to raz, na początku pliku PHP.</p>
+
+        <div class="step-box">
+            <h3>Kod połączenia - skopiuj i dostosuj!</h3>
+            <p>Stwórz plik <code>polaczenie.php</code> - będziesz go używał w innych plikach.</p>
+
+            <div class="code-box">
+<pre>&lt;?php
+<span class="code-comment">// To są dane do połączenia z bazą - MUSISZ JE ZMIENIĆ!</span>
+
+<span class="highlight">$serwer = "localhost";</span>     <span class="code-comment">// Adres serwera (zawsze localhost w XAMPP)</span>
+<span class="highlight">$uzytkownik = "root";</span>      <span class="code-comment">// Nazwa użytkownika (domyślnie "root")</span>
+<span class="highlight">$haslo = "";</span>               <span class="code-comment">// Hasło (domyślnie puste "")</span>
+<span class="highlight">$baza = "szkola";</span>          <span class="code-comment">// Nazwa Twojej bazy danych (ZMIEŃ NA SWOJĄ!)</span>
+
+<span class="code-comment">// Teraz łączymy się z bazą:</span>
+<span class="highlight">$conn = mysqli_connect($serwer, $uzytkownik, $haslo, $baza);</span>
+
+<span class="code-comment">// Sprawdzamy czy połączenie się udało:</span>
+if (!$conn) {
+    die("Błąd połączenia: " . mysqli_connect_error());
+}
+
+<span class="code-comment">// Ustawiamy kodowanie na polskie znaki:</span>
+mysqli_set_charset($conn, "utf8");
+
+echo "Połączono z bazą danych!";
+?&gt;</pre>
+            </div>
+        </div>
+
+        <h3>🔍 Wyjaśnienie krok po kroku:</h3>
+
+        <table class="example-table">
+            <tr>
+                <th>Kod</th>
+                <th>Co to jest?</th>
+                <th>Co musisz zmienić?</th>
+            </tr>
+            <tr>
+                <td><code>$serwer = "localhost"</code></td>
+                <td>Adres serwera</td>
+                <td><strong>NIE ZMIENIAJ</strong> - zawsze "localhost" na XAMPP</td>
+            </tr>
+            <tr>
+                <td><code>$uzytkownik = "root"</code></td>
+                <td>Nazwa użytkownika bazy</td>
+                <td><strong>NIE ZMIENIAJ</strong> - w XAMPP zawsze "root"</td>
+            </tr>
+            <tr>
+                <td><code>$haslo = ""</code></td>
+                <td>Hasło do bazy</td>
+                <td><strong>NIE ZMIENIAJ</strong> - w XAMPP domyślnie puste</td>
+            </tr>
+            <tr>
+                <td><code>$baza = "szkola"</code></td>
+                <td>Nazwa Twojej bazy</td>
+                <td><strong>ZMIEŃ!</strong> - wpisz nazwę swojej bazy (np. z zadania)</td>
+            </tr>
+            <tr>
+                <td><code>mysqli_connect()</code></td>
+                <td>Funkcja łącząca z bazą</td>
+                <td>NIE ZMIENIAJ - to gotowa funkcja PHP</td>
+            </tr>
+            <tr>
+                <td><code>$conn</code></td>
+                <td>Zmienna z połączeniem</td>
+                <td>Używasz jej we wszystkich innych plikach!</td>
+            </tr>
+        </table>
+
+        <div class="warning-box">
+            ⚠️ <strong>WAŻNE:</strong> Jeśli zapomnieć o <code>mysqli_set_charset($conn, "utf8");</code> to polskie znaki (ą, ć, ę, ł, ń, ó, ś, ź, ż) będą wyglądać dziwnie!
+        </div>
+
+        <hr id="zapis">
+
+        <h2>💾 CZĘŚĆ 3: Zapis danych do bazy (INSERT)</h2>
+
+        <h3>Teraz nauczysz się zapisywać dane z formularza do bazy danych!</h3>
+        <p>Gdy użytkownik wypełni formularz i kliknie "Wyślij", dane trafiają do pliku PHP. Ten plik musi je złapać i zapisać w bazie.</p>
+
+        <div class="step-box">
+            <h3>KROK PO KROKU: Jak to działa?</h3>
+            <ol>
+                <li>Użytkownik wypełnia formularz (np. <code>formularz.html</code>)</li>
+                <li>Klika "Wyślij"</li>
+                <li>Dane lecą do pliku PHP (np. <code>dodaj.php</code>)</li>
+                <li>PHP łapie dane używając <code>$_POST</code></li>
+                <li>PHP zapisuje dane w bazie używając <code>INSERT INTO</code></li>
+                <li>Gotowe! Dane są w bazie! ✅</li>
+            </ol>
+        </div>
+
+        <div class="step-box">
+            <h3>Przykład: Plik <code>dodaj.php</code> - zapisuje ucznia w bazie</h3>
+
+            <div class="code-box">
+<pre>&lt;?php
+<span class="code-comment">// KROK 1: Połącz się z bazą danych</span>
+<span class="highlight">include("polaczenie.php");</span>  <span class="code-comment">// Wczytuje plik z połączeniem</span>
+
+<span class="code-comment">// KROK 2: Złap dane z formularza (używamy $_POST)</span>
+<span class="highlight">$imie = $_POST['imie'];</span>           <span class="code-comment">// Pobiera wartość z pola name="imie"</span>
+<span class="highlight">$nazwisko = $_POST['nazwisko'];</span>   <span class="code-comment">// Pobiera wartość z pola name="nazwisko"</span>
+<span class="highlight">$klasa = $_POST['klasa'];</span>         <span class="code-comment">// Pobiera wartość z pola name="klasa"</span>
+<span class="highlight">$email = $_POST['email'];</span>         <span class="code-comment">// Pobiera wartość z pola name="email"</span>
+
+<span class="code-comment">// KROK 3: Przygotuj zapytanie SQL (INSERT INTO)</span>
+<span class="highlight">$sql = "INSERT INTO uczniowie (imie, nazwisko, klasa, email)
+        VALUES ('$imie', '$nazwisko', '$klasa', '$email')";</span>
+
+<span class="code-comment">// KROK 4: Wykonaj zapytanie (zapisz w bazie!)</span>
+<span class="highlight">if (mysqli_query($conn, $sql)) {</span>
+    echo "Uczeń został dodany do bazy! ✅";
+} else {
+    echo "Błąd: " . mysqli_error($conn);
+}
+
+<span class="code-comment">// KROK 5: Zamknij połączenie</span>
+<span class="highlight">mysqli_close($conn);</span>
+?&gt;</pre>
+            </div>
+        </div>
+
+        <h3>🔍 Szczegółowe wyjaśnienie:</h3>
+
+        <table class="example-table">
+            <tr>
+                <th>Kod</th>
+                <th>Co robi?</th>
+            </tr>
+            <tr>
+                <td><code>include("polaczenie.php")</code></td>
+                <td>Wczytuje plik z połączeniem do bazy. Dzięki temu masz dostęp do zmiennej <code>$conn</code></td>
+            </tr>
+            <tr>
+                <td><code>$_POST['imie']</code></td>
+                <td>Pobiera wartość z formularza. <strong>'imie'</strong> to wartość z <code>name="imie"</code> w formularzu!</td>
+            </tr>
+            <tr>
+                <td><code>INSERT INTO uczniowie</code></td>
+                <td>Mówi: "Wstaw dane do tabeli <strong>uczniowie</strong>"</td>
+            </tr>
+            <tr>
+                <td><code>(imie, nazwisko, klasa, email)</code></td>
+                <td>To są nazwy kolumn w tabeli (takie same jak w bazie!)</td>
+            </tr>
+            <tr>
+                <td><code>VALUES ('$imie', '$nazwisko', ...)</code></td>
+                <td>To są wartości, które wstawiasz (z formularza)</td>
+            </tr>
+            <tr>
+                <td><code>mysqli_query($conn, $sql)</code></td>
+                <td>Wykonuje zapytanie SQL (zapisuje w bazie!)</td>
+            </tr>
+            <tr>
+                <td><code>mysqli_error($conn)</code></td>
+                <td>Pokazuje błąd, jeśli coś poszło nie tak</td>
+            </tr>
+        </table>
+
+        <div class="warning-box">
+            ⚠️ <strong>SUPER WAŻNE:</strong> Nazwy w <code>(imie, nazwisko, klasa, email)</code> MUSZĄ być dokładnie takie same jak nazwy kolumn w Twojej tabeli w bazie danych! Sprawdź w phpMyAdmin!
+        </div>
+
+        <div class="tip-box">
+            💡 <strong>WSKAZÓWKA:</strong> Jeśli dostajesz błąd "undefined index", to znaczy że <code>name=""</code> w formularzu jest inne niż <code>$_POST['']</code> w PHP. Sprawdź czy są identyczne!
+        </div>
+
+        <hr id="odczyt">
+
+        <h2>📖 CZĘŚĆ 4: Odczyt danych z bazy (SELECT)</h2>
+
+        <h3>Teraz nauczysz się wyświetlać dane z bazy na stronie!</h3>
+        <p>Masz dane w bazie - super! Ale teraz chcesz je pokazać na stronie. Używamy do tego <code>SELECT</code>.</p>
+
+        <div class="step-box">
+            <h3>KROK PO KROKU: Jak to działa?</h3>
+            <ol>
+                <li>PHP łączy się z bazą danych</li>
+                <li>Wysyła zapytanie <code>SELECT</code> (poproś o dane)</li>
+                <li>Baza zwraca dane</li>
+                <li>PHP przechodzi przez każdy wiersz (pętla <code>while</code>)</li>
+                <li>Wyświetla dane na stronie</li>
+            </ol>
+        </div>
+
+        <div class="step-box">
+            <h3>Przykład: Plik <code>lista.php</code> - wyświetla wszystkich uczniów</h3>
+
+            <div class="code-box">
+<pre>&lt;?php
+<span class="code-comment">// KROK 1: Połącz się z bazą</span>
+<span class="highlight">include("polaczenie.php");</span>
+
+<span class="code-comment">// KROK 2: Przygotuj zapytanie SQL (SELECT)</span>
+<span class="highlight">$sql = "SELECT * FROM uczniowie";</span>  <span class="code-comment">// * = pobierz wszystkie kolumny</span>
+
+<span class="code-comment">// KROK 3: Wykonaj zapytanie</span>
+<span class="highlight">$wynik = mysqli_query($conn, $sql);</span>
+
+<span class="code-comment">// KROK 4: Sprawdź czy są jakieś dane</span>
+<span class="highlight">if (mysqli_num_rows($wynik) > 0) {</span>
+
+    <span class="code-comment">// KROK 5: Przejdź przez każdy wiersz (pętla!)</span>
+    echo "&lt;table border='1'&gt;";
+    echo "&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Imię&lt;/th&gt;&lt;th&gt;Nazwisko&lt;/th&gt;&lt;th&gt;Klasa&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;/tr&gt;";
+
+    <span class="highlight">while ($wiersz = mysqli_fetch_assoc($wynik)) {</span>
+        <span class="code-comment">// Każdy obrót pętli = jeden uczeń</span>
+        echo "&lt;tr&gt;";
+        echo "&lt;td&gt;" . $wiersz['id'] . "&lt;/td&gt;";
+        echo "&lt;td&gt;" . $wiersz['imie'] . "&lt;/td&gt;";
+        echo "&lt;td&gt;" . $wiersz['nazwisko'] . "&lt;/td&gt;";
+        echo "&lt;td&gt;" . $wiersz['klasa'] . "&lt;/td&gt;";
+        echo "&lt;td&gt;" . $wiersz['email'] . "&lt;/td&gt;";
+        echo "&lt;/tr&gt;";
+    }
+
+    echo "&lt;/table&gt;";
+
+} else {
+    echo "Brak uczniów w bazie.";
+}
+
+<span class="code-comment">// KROK 6: Zamknij połączenie</span>
+<span class="highlight">mysqli_close($conn);</span>
+?&gt;</pre>
+            </div>
+        </div>
+
+        <h3>🔍 Szczegółowe wyjaśnienie:</h3>
+
+        <table class="example-table">
+            <tr>
+                <th>Kod</th>
+                <th>Co robi?</th>
+            </tr>
+            <tr>
+                <td><code>SELECT * FROM uczniowie</code></td>
+                <td><strong>SELECT</strong> = wybierz dane, <strong>*</strong> = wszystkie kolumny, <strong>FROM uczniowie</strong> = z tabeli uczniowie</td>
+            </tr>
+            <tr>
+                <td><code>mysqli_query($conn, $sql)</code></td>
+                <td>Wykonuje zapytanie i zwraca wynik</td>
+            </tr>
+            <tr>
+                <td><code>$wynik</code></td>
+                <td>Zmienna przechowująca wynik zapytania (wszystkie wiersze z bazy)</td>
+            </tr>
+            <tr>
+                <td><code>mysqli_num_rows($wynik)</code></td>
+                <td>Liczy ile wierszy zwróciło zapytanie (ile uczniów jest w bazie)</td>
+            </tr>
+            <tr>
+                <td><code>while ($wiersz = mysqli_fetch_assoc($wynik))</code></td>
+                <td>Pętla! Przechodzi przez każdy wiersz. <code>$wiersz</code> to jeden uczeń (tablica asocjacyjna)</td>
+            </tr>
+            <tr>
+                <td><code>$wiersz['imie']</code></td>
+                <td>Pobiera wartość z kolumny "imie" dla aktualnego ucznia</td>
+            </tr>
+        </table>
+
+        <div class="tip-box">
+            💡 <strong>CO TO JEST PĘTLA WHILE?</strong><br>
+            Wyobraź sobie, że masz listę 10 uczniów. Pętla <code>while</code> przechodzi przez każdego z nich, jeden po drugim.
+            W każdym obrocie pętli <code>$wiersz</code> to kolejny uczeń. Gdy skończą się uczniowie, pętla się kończy!
+        </div>
+
+        <hr id="filtrowanie">
+
+        <h2>🔍 CZĘŚĆ 5: Filtrowanie danych (WHERE)</h2>
+
+        <h3>Co jeśli chcesz wyświetlić tylko niektórych uczniów?</h3>
+        <p>Czasami nie chcesz wszystkich danych. Chcesz np. tylko uczniów z klasy "3A" albo tylko uczniów o imieniu "Anna". Używamy do tego <code>WHERE</code>!</p>
+
+        <div class="step-box">
+            <h3>Przykład 1: Pokaż tylko uczniów z klasy "3A"</h3>
+
+            <div class="code-box">
+<pre>&lt;?php
+include("polaczenie.php");
+
+<span class="code-comment">// WHERE klasa = '3A' - pokaż tylko uczniów z klasy 3A</span>
+<span class="highlight">$sql = "SELECT * FROM uczniowie WHERE klasa = '3A'";</span>
+
+$wynik = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($wynik) > 0) {
+    while ($wiersz = mysqli_fetch_assoc($wynik)) {
+        echo $wiersz['imie'] . " " . $wiersz['nazwisko'] . "&lt;br&gt;";
+    }
+} else {
+    echo "Brak uczniów w klasie 3A.";
+}
+
+mysqli_close($conn);
+?&gt;</pre>
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h3>Przykład 2: Pokaż tylko uczniów o imieniu "Anna"</h3>
+
+            <div class="code-box">
+<pre>&lt;?php
+include("polaczenie.php");
+
+<span class="code-comment">// WHERE imie = 'Anna' - pokaż tylko uczniów o imieniu Anna</span>
+<span class="highlight">$sql = "SELECT * FROM uczniowie WHERE imie = 'Anna'";</span>
+
+$wynik = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($wynik) > 0) {
+    while ($wiersz = mysqli_fetch_assoc($wynik)) {
+        echo $wiersz['imie'] . " " . $wiersz['nazwisko'] . " - " . $wiersz['email'] . "&lt;br&gt;";
+    }
+} else {
+    echo "Brak uczniów o imieniu Anna.";
+}
+
+mysqli_close($conn);
+?&gt;</pre>
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h3>Przykład 3: Filtrowanie na podstawie danych z formularza</h3>
+            <p>To jest BARDZO WAŻNE na egzaminie! Użytkownik wybiera klasę w formularzu, a Ty pokazujesz tylko uczniów z tej klasy.</p>
+
+            <p><strong>Formularz (filtr.html):</strong></p>
+            <div class="code-box">
+<pre>&lt;form action="pokaz_klase.php" method="POST"&gt;
+    &lt;label&gt;Wybierz klasę:&lt;/label&gt;
+    &lt;select <span class="highlight">name="wybrana_klasa"</span>&gt;
+        &lt;option value="3A"&gt;3A&lt;/option&gt;
+        &lt;option value="3B"&gt;3B&lt;/option&gt;
+        &lt;option value="3C"&gt;3C&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;input type="submit" value="Pokaż uczniów"&gt;
+&lt;/form&gt;</pre>
+            </div>
+
+            <p><strong>PHP (pokaz_klase.php):</strong></p>
+            <div class="code-box">
+<pre>&lt;?php
+include("polaczenie.php");
+
+<span class="code-comment">// Złap wybraną klasę z formularza</span>
+<span class="highlight">$klasa = $_POST['wybrana_klasa'];</span>
+
+<span class="code-comment">// Użyj jej w zapytaniu WHERE</span>
+<span class="highlight">$sql = "SELECT * FROM uczniowie WHERE klasa = '$klasa'";</span>
+
+$wynik = mysqli_query($conn, $sql);
+
+echo "&lt;h2&gt;Uczniowie z klasy $klasa:&lt;/h2&gt;";
+
+if (mysqli_num_rows($wynik) > 0) {
+    while ($wiersz = mysqli_fetch_assoc($wynik)) {
+        echo $wiersz['imie'] . " " . $wiersz['nazwisko'] . "&lt;br&gt;";
+    }
+} else {
+    echo "Brak uczniów w tej klasie.";
+}
+
+mysqli_close($conn);
+?&gt;</pre>
+            </div>
+        </div>
+
+        <h3>🔍 Więcej przykładów WHERE:</h3>
+
+        <table class="example-table">
+            <tr>
+                <th>Zapytanie SQL</th>
+                <th>Co robi?</th>
+            </tr>
+            <tr>
+                <td><code>WHERE klasa = '3A'</code></td>
+                <td>Pokaż uczniów z klasy 3A</td>
+            </tr>
+            <tr>
+                <td><code>WHERE imie = 'Jan'</code></td>
+                <td>Pokaż uczniów o imieniu Jan</td>
+            </tr>
+            <tr>
+                <td><code>WHERE id = 5</code></td>
+                <td>Pokaż ucznia o ID równym 5</td>
+            </tr>
+            <tr>
+                <td><code>WHERE klasa = '3A' AND nazwisko = 'Kowalski'</code></td>
+                <td>Pokaż uczniów z klasy 3A o nazwisku Kowalski</td>
+            </tr>
+            <tr>
+                <td><code>WHERE klasa = '3A' OR klasa = '3B'</code></td>
+                <td>Pokaż uczniów z klasy 3A lub 3B</td>
+            </tr>
+            <tr>
+                <td><code>WHERE imie LIKE 'A%'</code></td>
+                <td>Pokaż uczniów których imię zaczyna się na A</td>
+            </tr>
+        </table>
+
+        <div class="tip-box">
+            💡 <strong>ZAPAMIĘTAJ:</strong><br>
+            - Tekst w WHERE musi być w apostrofach: <code>WHERE klasa = '3A'</code><br>
+            - Liczby BEZ apostrofów: <code>WHERE id = 5</code><br>
+            - <strong>AND</strong> = oba warunki muszą być spełnione<br>
+            - <strong>OR</strong> = wystarczy jeden warunek
+        </div>
+
+        <hr>
+
+        <h2>🔢 WAŻNE: Dwa sposoby odczytu z bazy - wybierz jeden!</h2>
+
+        <div class="info-box">
+            <h3>Na egzaminie możesz używać danych z bazy na DWA sposoby:</h3>
+
+            <h4>1️⃣ TABLICA ASOCJACYJNA (po nazwach kolumn) - ŁATWIEJSZA:</h4>
+            <div class="code-box">
+<pre>while ($wiersz = <strong style="color: #e74c3c;">mysqli_fetch_assoc($wynik)</strong>) {
+    echo $wiersz['imie'];      <span style="color: #95a5a6;">// używamy NAZWY kolumny</span>
+    echo $wiersz['nazwisko'];  <span style="color: #95a5a6;">// używamy NAZWY kolumny</span>
+    echo $wiersz['klasa'];     <span style="color: #95a5a6;">// używamy NAZWY kolumny</span>
+}</pre>
+            </div>
+
+            <p><strong>Zalety:</strong></p>
+            <ul>
+                <li>✅ Łatwiejsze do zapamiętania (używasz nazw kolumn)</li>
+                <li>✅ Kod jest bardziej czytelny</li>
+                <li>✅ Nie musisz pamiętać kolejności kolumn</li>
+            </ul>
+
+            <h4>2️⃣ TABLICA INDEKSOWANA (po numerach) - SZYBSZA:</h4>
+            <div class="code-box">
+<pre>while ($wiersz = <strong style="color: #e74c3c;">mysqli_fetch_row($wynik)</strong>) {
+    echo $wiersz[1];  <span style="color: #95a5a6;">// używamy NUMERU (1 = imie)</span>
+    echo $wiersz[2];  <span style="color: #95a5a6;">// używamy NUMERU (2 = nazwisko)</span>
+    echo $wiersz[3];  <span style="color: #95a5a6;">// używamy NUMERU (3 = klasa)</span>
+}</pre>
+            </div>
+
+            <p><strong>Zalety:</strong></p>
+            <ul>
+                <li>✅ Trochę szybsze działanie</li>
+                <li>✅ Mniej pisania (liczby zamiast nazw)</li>
+            </ul>
+
+            <p><strong>⚠️ UWAGA przy tablicy indeksowanej:</strong></p>
+            <ul>
+                <li>❗ Numerowanie zaczyna się od <strong>0</strong> nie od 1!</li>
+                <li>❗ <code>[0]</code> = pierwsza kolumna, <code>[1]</code> = druga kolumna, itd.</li>
+                <li>❗ Kolejność MUSI być taka sama jak w SELECT</li>
+                <li>❌ <code>$wiersz['imie']</code> NIE ZADZIAŁA z <code>mysqli_fetch_row()</code></li>
+                <li>❌ <code>$wiersz[1]</code> NIE ZADZIAŁA z <code>mysqli_fetch_assoc()</code></li>
+            </ul>
+        </div>
+
+        <div class="step-box">
+            <h3>📊 Przykład porównania:</h3>
+
+            <table class="example-table">
+                <tr>
+                    <th>Tablica asocjacyjna</th>
+                    <th>Tablica indeksowana</th>
+                </tr>
+                <tr>
+                    <td><code>mysqli_fetch_assoc($wynik)</code></td>
+                    <td><code>mysqli_fetch_row($wynik)</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['id']</code></td>
+                    <td><code>$wiersz[0]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['imie']</code></td>
+                    <td><code>$wiersz[1]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['nazwisko']</code></td>
+                    <td><code>$wiersz[2]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['klasa']</code></td>
+                    <td><code>$wiersz[3]</code></td>
+                </tr>
+                <tr>
+                    <td><code>$wiersz['email']</code></td>
+                    <td><code>$wiersz[4]</code></td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                💡 <strong>WSKAZÓWKA NA EGZAMIN:</strong><br>
+                <strong>Jeśli nie wiesz którą wybrać - użyj TABLICY ASOCJACYJNEJ!</strong><br>
+                Jest łatwiejsza i mniej pomyłek. Używasz nazw kolumn które widzisz w phpMyAdmin.<br>
+                <br>
+                Tablicę indeksowaną używaj tylko jeśli:<br>
+                - Dokładnie znasz kolejność kolumn w bazie<br>
+                - Pamiętasz że liczenie zaczyna się od 0<br>
+                - Zadanie egzaminacyjne wymaga jej użycia
+            </div>
+        </div>
+
+        <div class="success-box">
+            <h3>🎯 Zobacz przykłady w praktyce!</h3>
+            <p>W folderze <strong>php_przyklady/</strong> znajdziesz gotowe pliki z oboma metodami:</p>
+            <ul>
+                <li><strong>lista.php</strong> - używa <code>mysqli_fetch_row()</code> (tablica indeksowana)</li>
+                <li><strong>pokaz_klase.php</strong> - używa <code>mysqli_fetch_row()</code> z WHERE</li>
+                <li>Oba pliki zawierają szczegółowe komentarze i wyjaśnienia!</li>
+            </ul>
+            <p><a href="php_przyklady/lista.php" style="color: #2c3e50; font-weight: bold;">➡️ Zobacz przykład z tablicą indeksowaną</a></p>
+        </div>
+
+        <hr>
+
+        <h2>📚 Podsumowanie - Ściągawka na egzamin!</h2>
+
+        <div class="success-box">
+            <h3>✅ Najważniejsze rzeczy do zapamiętania:</h3>
+
+            <p><strong>1. Połączenie z bazą:</strong></p>
+            <code>$conn = mysqli_connect("localhost", "root", "", "nazwa_bazy");</code>
+
+            <p><strong>2. Pobieranie danych z formularza:</strong></p>
+            <code>$zmienna = $_POST['name_z_formularza'];</code>
+
+            <p><strong>3. Zapis do bazy (INSERT):</strong></p>
+            <code>INSERT INTO tabela (kolumna1, kolumna2) VALUES ('$wartosc1', '$wartosc2')</code>
+
+            <p><strong>4. Odczyt z bazy (SELECT):</strong></p>
+            <code>SELECT * FROM tabela</code>
+
+            <p><strong>5. Filtrowanie (WHERE):</strong></p>
+            <code>SELECT * FROM tabela WHERE kolumna = 'wartość'</code>
+
+            <p><strong>6. Pętla do wyświetlania:</strong></p>
+            <code>while ($wiersz = mysqli_fetch_assoc($wynik)) { ... }</code>
+        </div>
+
+        <div class="warning-box">
+            ⚠️ <strong>NAJCZĘSTSZE BŁĘDY:</strong>
+            <ul>
+                <li>Zapomnienie o <code>include("polaczenie.php")</code></li>
+                <li>Różne nazwy w <code>name=""</code> i <code>$_POST['']</code></li>
+                <li>Różne nazwy kolumn w bazie i w zapytaniu SQL</li>
+                <li>Brak apostrofów w WHERE: <code>WHERE klasa = 3A</code> ❌ (powinno być <code>'3A'</code> ✅)</li>
+                <li>Nie uruchomiony Apache lub MySQL w XAMPP</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h2>🎓 Gotowy na egzamin!</h2>
+        <p>Teraz znasz wszystko, co potrzebne do zadań z PHP i bazami danych na egzaminie INF.03!</p>
+
+        <div class="button-container">
+            <a href="index.html" class="big-button">🏠 Wróć do strony głównej</a>
+        </div>
+
+    </div>
+
+    <!-- Stopka -->
+    <div id="footer">
+        <p>&copy; 2024 Poradnik INF.03 | Powodzenia na egzaminie! 🍀</p>
+    </div>
+
+</body>
+</html>

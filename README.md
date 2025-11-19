@@ -1,163 +1,216 @@
-# Lekcja: Tworzenie prostej strony w HTML z użyciem zewnętrznego stylu CSS
+# Poradnik INF.03 - Interaktywny Tutorial dla Uczniów
 
-## Wstęp
+## 📚 Opis projektu
 
-W tej lekcji nauczymy się, jak stworzyć prostą stronę internetową. Użyjemy do tego HTML i CSS. Strona będzie składać się z:
+Kompleksowy, interaktywny poradnik przygotowujący uczniów do egzaminu zawodowego INF.03. Projekt zawiera szczegółowe tutoriale dotyczące:
+- Tworzenia stron HTML/CSS
+- Pracy z bazami danych MySQL
+- Programowania w PHP (formularze, zapis, odczyt, filtrowanie)
 
-- **Nagłówka** o wysokości 120 pikseli.
-- **Menu nawigacji** o szerokości 30% i wysokości 400 pikseli.
-- **Głównej treści** o szerokości 70% i wysokości 400 pikseli.
-- **Stopki** o wysokości 60 pikseli.
+## 🎯 Dla kogo jest ten poradnik?
 
-Użyjemy **pływających bloków** (float), aby ułożyć elementy na stronie.
+Ten poradnik jest **specjalnie zaprojektowany dla słabych uczniów** przygotowujących się do egzaminu INF.03. Wszystko jest wyjaśnione:
+- Krok po kroku
+- W prosty, zrozumiały sposób
+- Z wieloma przykładami
+- Z gotowymi kodami do skopiowania
+- Z interaktywnymi wyjaśnieniami
 
-## Krok 1: Przygotowanie plików
+## 📖 Zawartość projektu
 
-1. **Utwórz folder** na swoim komputerze, np. `moja_strona`.
-2. **Otwórz Notatnik** lub inny prosty edytor tekstu.
+### 1. Strona główna (index.html)
+- Menu nawigacji
+- **Szczegółowa instrukcja importu bazy danych w phpMyAdmin**
+- Linki do wszystkich tutoriali
 
-## Krok 2: Tworzenie pliku HTML
+### 2. Tutorial PHP - Zapis i Odczyt (PHP_zapis_odczyt.html)
+Kompletny przewodnik zawierający:
+- ✅ Jak stworzyć formularz HTML (każde pole wyjaśnione!)
+- ✅ Jak połączyć się z bazą danych MySQL
+- ✅ Jak zapisać dane z formularza do bazy (INSERT)
+- ✅ Jak odczytać dane z bazy (SELECT)
+- ✅ Jak filtrować dane (WHERE)
+- ✅ Szczegółowe wyjaśnienia każdej funkcji PHP
+- ✅ Przykłady zapytań SQL
+- ✅ Najczęstsze błędy i jak ich unikać
 
-1. W Notatniku **zapisz nowy plik** jako `index.html` w folderze `moja_strona`.
-2. Wpisz podstawową strukturę HTML:
+### 3. Gotowe przykłady PHP (folder php_przyklady/)
+Działające pliki PHP gotowe do użycia:
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Moja Prosta Strona</title>
-    <!-- Łączenie zewnętrznego pliku CSS -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
+#### polaczenie.php
+- Połączenie z bazą danych MySQL
+- Szczegółowe komentarze
+- Instrukcje co zmienić na egzaminie
 
-    <!-- Nagłówek -->
-    <div id="header">
-        <h1>Witamy na naszej stronie</h1>
-    </div>
+#### formularz.html
+- Prosty formularz do dodawania ucznia
+- Każde pole dokładnie wyjaśnione
+- Podpowiedzi dla ucznia
 
-    <!-- Menu nawigacji -->
-    <div id="nav">
-        <h2>Menu</h2>
-        <ul>
-            <li><a href="#">Strona główna</a></li>
-            <li><a href="#">O nas</a></li>
-            <li><a href="#">Kontakt</a></li>
-        </ul>
-    </div>
+#### dodaj.php
+- Zapisuje dane z formularza do bazy (INSERT INTO)
+- Pokazuje krok po kroku co się dzieje
+- Wyjaśnia każdą linię kodu
+- Wyświetla komunikaty o sukcesie/błędzie
 
-    <!-- Główna treść -->
-    <div id="main">
-        <h2>Główna Treść</h2>
-        <p>To jest miejsce na główną treść Twojej strony.</p>
-    </div>
+#### lista.php
+- Wyświetla wszystkich uczniów z bazy (SELECT)
+- Używa pętli while
+- Pokazuje dane w tabeli HTML
+- Szczegółowe wyjaśnienia pętli i funkcji
 
-    <!-- Stopka -->
-    <div id="footer">
-        <p>&copy; 2023 Moja Strona</p>
-    </div>
+#### filtruj.html
+- 3 formularze do filtrowania:
+  - Po klasie (lista rozwijana)
+  - Po imieniu (pole tekstowe)
+  - Po nazwisku (pole tekstowe)
 
-</body>
-</html>
+#### pokaz_klase.php
+- Filtruje uczniów po klasie (WHERE)
+- Pokazuje jak używać WHERE z danymi z formularza
+
+#### pokaz_imie.php
+- Filtruje uczniów po imieniu
+
+#### pokaz_nazwisko.php
+- Filtruje uczniów po nazwisku
+
+### 4. Przykładowa baza danych (szkola.sql)
+- Gotowa baza danych do importu
+- Tabela `uczniowie` z przykładowymi danymi
+- Tabela `klasy` dla zaawansowanych zadań
+- 10 przykładowych uczniów
+
+## 🚀 Jak uruchomić projekt?
+
+### KROK 1: Pobierz projekt
+```bash
+git clone https://github.com/Tomek077/Bloki_HTML.git
 ```
 
-## Krok 3: Tworzenie pliku CSS
+### KROK 2: Uruchom XAMPP
+1. Otwórz **XAMPP Control Panel**
+2. Kliknij **Start** przy **Apache** (serwer PHP)
+3. Kliknij **Start** przy **MySQL** (baza danych)
+4. Poczekaj aż oba zmienią kolor na zielony
 
-1. **Utwórz nowy plik** w Notatniku.
-2. **Zapisz go** jako `style.css` w tym samym folderze `moja_strona`.
-3. Wpisz następujący kod CSS:
+### KROK 3: Zaimportuj bazę danych
+1. Otwórz przeglądarkę i wpisz: `localhost/phpmyadmin`
+2. Kliknij zakładkę **"Bazy danych"**
+3. Utwórz nową bazę o nazwie: `szkola`
+4. Kliknij na bazę `szkola` po lewej stronie
+5. Kliknij zakładkę **"Import"**
+6. Wybierz plik `szkola.sql` z projektu
+7. Kliknij **"Wykonaj"**
 
-```css
-/* Resetowanie marginesów i odstępów */
-* {
-    margin: 0;
-    padding: 0;
-}
+### KROK 4: Skopiuj pliki do XAMPP
+1. Skopiuj cały folder projektu do: `C:\xampp\htdocs\`
+2. Teraz masz: `C:\xampp\htdocs\Bloki_HTML\`
 
-body {
-    font-family: Arial, sans-serif;
-}
+### KROK 5: Otwórz w przeglądarce
+1. Otwórz przeglądarkę
+2. Wpisz: `localhost/Bloki_HTML/index.html`
+3. Gotowe! Możesz korzystać z poradnika!
 
-/* Nagłówek */
-#header {
-    background-color: #4CAF50;
-    color: white;
-    height: 120px;
-    text-align: center;
-    padding-top: 30px;
-}
+## 📁 Struktura projektu
 
-/* Menu nawigacji */
-#nav {
-    background-color: #f1f1f1;
-    width: 30%;
-    height: 400px;
-    float: left;
-    padding: 20px;
-}
-
-/* Główna treść */
-#main {
-    background-color: #ffffff;
-    width: 70%;
-    height: 400px;
-    float: left;
-    padding: 20px;
-}
-
-/* Stopka */
-#footer {
-    background-color: #ddd;
-    height: 60px;
-    clear: both;
-    text-align: center;
-    padding-top: 20px;
-}
+```
+Bloki_HTML/
+│
+├── index.html                    # Strona główna z menu i instrukcją importu
+├── PHP_zapis_odczyt.html        # Główny tutorial PHP
+├── szkola.sql                   # Baza danych do importu
+├── README.md                    # Ten plik
+│
+├── css/
+│   └── style.css                # Style dla wszystkich stron
+│
+└── php_przyklady/               # Gotowe przykłady PHP
+    ├── README.txt               # Instrukcja użycia przykładów
+    ├── polaczenie.php           # Połączenie z bazą
+    ├── formularz.html           # Formularz dodawania ucznia
+    ├── dodaj.php                # Zapis do bazy (INSERT)
+    ├── lista.php                # Odczyt z bazy (SELECT)
+    ├── filtruj.html             # Formularze do filtrowania
+    ├── pokaz_klase.php          # Filtrowanie po klasie (WHERE)
+    ├── pokaz_imie.php           # Filtrowanie po imieniu
+    └── pokaz_nazwisko.php       # Filtrowanie po nazwisku
 ```
 
-## Krok 4: Uruchomienie strony
+## 🎓 Przygotowanie do egzaminu INF.03
 
-1. **Zapisz oba pliki**: `index.html` i `style.css`.
-2. **Otwórz plik** `index.html` w przeglądarce internetowej (np. Chrome, Firefox).
+### Co musisz umieć na egzamin?
 
-## Wyjaśnienie kodu
+#### 1. Import bazy danych
+✅ Poradnik zawiera krok po kroku instrukcję w sekcji głównej
 
-- **Nagłówek** (`#header`):
-  - Wysokość: 120 pikseli.
-  - Tło w kolorze zielonym.
-  - Tekst wyśrodkowany i w kolorze białym.
+#### 2. Połączenie z bazą
+✅ Plik `polaczenie.php` - skopiuj i zmień nazwę bazy
 
-- **Menu nawigacji** (`#nav`):
-  - Szerokość: 30% strony.
-  - Wysokość: 400 pikseli.
-  - Ustawienie po lewej stronie dzięki `float: left`.
+#### 3. Formularz HTML
+✅ Plik `formularz.html` - każde pole wyjaśnione
 
-- **Główna treść** (`#main`):
-  - Szerokość: 70% strony.
-  - Wysokość: 400 pikseli.
-  - Ustawienie obok menu nawigacji dzięki `float: left`.
+#### 4. Zapis do bazy (INSERT)
+✅ Plik `dodaj.php` - szczegółowe wyjaśnienia
 
-- **Stopka** (`#footer`):
-  - Wysokość: 60 pikseli.
-  - Umieszczona poniżej pływających elementów dzięki `clear: both`.
+#### 5. Odczyt z bazy (SELECT)
+✅ Plik `lista.php` - pokazuje pętlę while
 
-## Dodatkowe wskazówki
+#### 6. Filtrowanie (WHERE)
+✅ Pliki `pokaz_*.php` - różne przykłady WHERE
 
-- **Pływające bloki**: Użycie `float` pozwala ustawić elementy obok siebie.
-- **Czyszczenie float**: Użycie `clear: both` w stopce powoduje, że jest ona wyświetlana poniżej elementów pływających.
-- **Dostosowanie wyglądu**: Możesz zmieniać kolory, czcionki i inne style w pliku CSS, aby dostosować wygląd strony.
+## ⚠️ Najczęstsze błędy (i jak ich unikać!)
 
-## Podsumowanie
+### ❌ "Undefined index"
+**Problem:** `$_POST['imie']` nie istnieje
+**Rozwiązanie:** Sprawdź czy `name="imie"` w formularzu jest identyczne!
 
-Gratulacje! Stworzyłeś prostą stronę internetową z użyciem HTML i CSS. Poznałeś podstawy tworzenia struktury strony i jej stylizacji za pomocą zewnętrznego pliku CSS.
+### ❌ "Unknown column"
+**Problem:** Kolumna nie istnieje w tabeli
+**Rozwiązanie:** Sprawdź nazwy kolumn w phpMyAdmin (zakładka "Struktura")
 
-## Zadanie domowe
+### ❌ "Unknown database"
+**Problem:** Baza danych nie istnieje
+**Rozwiązanie:** Zaimportuj plik .sql w phpMyAdmin
 
-Spróbuj dodać więcej elementów do swojej strony, takich jak:
+### ❌ "Access denied"
+**Problem:** Błędne dane połączenia
+**Rozwiązanie:** Sprawdź czy MySQL jest uruchomiony w XAMPP
 
-- Obrazki
-- Dodatkowe linki w menu
-- Kolejne sekcje w głównej treści
+### ❌ Dziwne znaki zamiast polskich liter
+**Problem:** Błędne kodowanie
+**Rozwiązanie:** Dodaj `mysqli_set_charset($conn, "utf8");`
 
-**Pamiętaj:** Ćwiczenie czyni mistrza!
+## 💡 Wskazówki na egzamin
+
+1. **Zawsze czytaj polecenie dwa razy!**
+2. **Sprawdź nazwy tabel i kolumn w phpMyAdmin**
+3. **Pamiętaj o `include("polaczenie.php");`**
+4. **Tekst w WHERE zawsze w apostrofach: `'3A'`**
+5. **Liczby BEZ apostrofów: `5`**
+6. **Zapisuj pliki z rozszerzeniem `.php` nie `.txt`!**
+7. **Uruchom Apache i MySQL przed testowaniem!**
+
+## 🔧 Wymagania techniczne
+
+- **XAMPP** (zawiera Apache, MySQL, PHP)
+- Przeglądarka internetowa (Chrome, Firefox, Edge)
+- Edytor tekstu (Notepad++, Visual Studio Code, lub zwykły Notatnik)
+
+## 📞 Pomoc
+
+Jeśli coś nie działa:
+1. Przeczytaj komunikat błędu - często podpowiada rozwiązanie!
+2. Sprawdź czy XAMPP (Apache + MySQL) jest uruchomiony
+3. Sprawdź czy baza danych została zaimportowana
+4. Sprawdź pliki w folderze `php_przyklady/README.txt`
+
+## 🍀 Powodzenia na egzaminie INF.03!
+
+Ten poradnik zawiera WSZYSTKO czego potrzebujesz do zdania egzaminu. Przećwicz każdy przykład, zrozum jak działa, i będziesz gotowy!
+
+---
+
+**Autor:** Poradnik stworzony specjalnie dla uczniów przygotowujących się do egzaminu INF.03
+**Licencja:** Projekt edukacyjny - możesz swobodnie używać i modyfikować
+**Wersja:** 1.0 - Kompletny tutorial PHP, HTML, CSS, MySQL
